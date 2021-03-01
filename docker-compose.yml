@@ -2,8 +2,10 @@ version: "3"
 services:
   postgres:
     image: postgres:12
-    ports:
-      - 54320:5432
+    # The container port will be available on postgres:5432 to the other services,
+    # This is left for easy debugging when needed.
+    #    ports:
+    #      - 54320:5432
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: 1234
@@ -15,8 +17,10 @@ services:
   raw-creds:
     image: ${DOCKER_REGISTRY}/raw-creds-compose:${RAW_VERSION}
     entrypoint: ["/wait-for-it.sh", "postgres:5432", "--", "/opt/docker/bin/raw-creds-compose"]
-    ports:
-      - "54322:54322"
+    # The container port will be available on raw-creds:54322 to the other services,
+    # This is left for easy debugging when needed.
+    #    ports:
+    #      - "54322:54322"
     depends_on:
       - postgres
     volumes:
@@ -30,8 +34,10 @@ services:
 
   raw-storage:
     image: ${DOCKER_REGISTRY}/raw-storage-compose:${RAW_VERSION}
-    ports:
-      - "54323:54323"
+    # The container port will be available on raw-storage:54323 to the other services,
+    # This is left for easy debugging when needed.
+    #    ports:
+    #      - "54323:54323"
     volumes:
       - ./etc/raw-common/raw.license:/etc/raw-common/raw.license:ro
       - ./conf/raw-storage/application.conf:/opt/docker/conf/application.conf:ro
@@ -45,6 +51,8 @@ services:
   raw-executor:
     image: ${DOCKER_REGISTRY}/raw-executor-compose:${RAW_VERSION}
     entrypoint: ["/wait-for-it.sh", "postgres:5432", "--", "/opt/docker/bin/raw-executor-compose"]
+    # So this has to be opened to the web browser directly as it seems some
+    # calls are made directly to the executor instead of going through the frontend.
     ports:
       - "54321:54321"
     depends_on:
@@ -91,3 +99,4 @@ volumes:
   raw_postgres:
   raw_cache:
     external: true
+
