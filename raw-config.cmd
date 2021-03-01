@@ -6,7 +6,7 @@ REM because it will be used to launch the container with the driver using the Do
 REM on the host.
 set EXECUTOR_JAVA_OPTS=^
     -Draw.executor.spark.docker-driver.volumes.0=%CD%\conf\raw-driver\logback.xml:/opt/docker/conf/logback.xml:ro ^
-    -Draw.executor.spark.docker-driver.volumes.1=raw_cache:/var/tmp/rawcache ^
+    -Draw.executor.spark.docker-driver.volumes.1=cache:/var/tmp/rawcache ^
     -Draw.executor.spark.docker-driver.volumes.2=%CD%\conf\raw-driver\core-site.xml:/opt/docker/conf/core-site.xml:ro ^
     -Draw.executor.spark.docker-driver.ports.0=4040:4040 ^
     -Draw.executor.spark.docker-driver.image-name=%DOCKER_REGISTRY%/raw-driver-docker-compose

@@ -11,7 +11,7 @@ services:
       POSTGRES_PASSWORD: 1234
       POSTGRES_DB: raw
     volumes:
-      - raw_postgres:/var/lib/postgresql/data
+      - postgres:/var/lib/postgresql/data
       - ./init-postgres/:/docker-entrypoint-initdb.d/
 
   raw-creds:
@@ -43,8 +43,7 @@ services:
       - ./conf/raw-storage/application.conf:/opt/docker/conf/application.conf:ro
       - ./conf/raw-storage/logback.xml:/opt/docker/conf/logback.xml:ro
       - ./conf/auth.conf:/opt/docker/conf/auth.conf:ro
-      - raw_cache:/var/tmp/rawcache
-
+      - cache:/var/tmp/rawcache
     environment:
       JAVA_OPTS: ${JAVA_OPTS} ${STORAGE_JAVA_OPTS}
 
@@ -67,7 +66,7 @@ services:
       - ./conf/raw-executor/logback.xml:/opt/docker/conf/logback.xml:ro
       - ./conf/raw-executor/driver-java-options:/opt/docker/conf/driver-java-options:ro
       - ./conf/auth.conf:/opt/docker/conf/auth.conf:ro
-      - raw_cache:/var/tmp/rawcache
+      - cache:/var/tmp/rawcache
       - /tmp/raw-driver-logs:/tmp/raw-driver-logs
       - /var/run/docker.sock:/var/run/docker.sock
     environment:
@@ -96,6 +95,6 @@ services:
       PUBLIC_ADDRESS: ${PUBLIC_ADDRESS}
 
 volumes:
-  raw_postgres:
-  raw_cache:
+  postgres:
+  cache:
 
