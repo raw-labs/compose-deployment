@@ -13,11 +13,11 @@ This repository contains the scripts and configuration to run RAW using docker-c
 First download or clone this repository.
 
 Then contact us to obtain the following:
-- A license file.
+- A license file
 - A version number of RAW
-- The credentials for the RAW Docker registry.
+- The credentials for the RAW Docker registry
 
-The license file should be copied to `/etc/raw-common/raw.license`.
+The license file should be copied to the following subfolder: `etc/raw-common/raw.license`.
 
 Edit the file `raw-config.sh` and set the variable `RAW_VERSION` to the version of RAW that you received from us.
 
@@ -46,7 +46,7 @@ This directory is mapped to the docker container running the driver.
 
 ## Configuration
 
-The configuration is in the `conf/` directory, organized by RAW process (frontend, creds,
+The configuration is in the `conf/` subdirectory, organized by RAW process (frontend, creds,
 executor, storage).
 The configuration of the driver is a special case, because the driver is launched at runtime by the RAW Executor.
 The Java options used to launch the driver are set in `conf/raw-executor/driver-java-options`.
