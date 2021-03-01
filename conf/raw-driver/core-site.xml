@@ -3,6 +3,6 @@
 <configuration>
     <property>
         <name>fs.defaultFS</name>
-        <value>hdfs://nuno-desktop:8020</value>
+        <value>hdfs://FILLME</value>
     </property>
 </configuration>

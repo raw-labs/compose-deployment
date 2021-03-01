@@ -20,7 +20,7 @@ services:
     depends_on:
       - postgres
     volumes:
-      - ./wait-for-it.sh:/wait-for-it.sh
+      - ./wait-for-it.sh:/wait-for-it.sh:ro
       - ./etc/raw-common/raw.license:/etc/raw-common/raw.license:ro
       - ./conf/raw-creds/application.conf:/opt/docker/conf/application.conf:ro
       - ./conf/raw-creds/logback.xml:/opt/docker/conf/logback.xml:ro
@@ -78,7 +78,7 @@ services:
       - raw-executor
       - postgres
     volumes:
-      - ./wait-for-it.sh:/wait-for-it.sh
+      - ./wait-for-it.sh:/wait-for-it.sh:ro
       - ./etc/raw-common/raw.license:/etc/raw-common/raw.license:ro
       - ./conf/raw-frontend/application.conf:/opt/docker/conf/application.conf:ro
       - ./conf/raw-frontend/logback.xml:/opt/docker/conf/logback.xml:ro
