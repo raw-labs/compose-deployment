@@ -98,5 +98,4 @@ services:
 volumes:
   raw_postgres:
   raw_cache:
-    external: true
 
