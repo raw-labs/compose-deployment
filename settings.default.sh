@@ -1,5 +1,9 @@
 : ${SHOW_SETTINGS:=false}
 
+# This is used to prefix resource names such as containers, networks etc...
+# If this is not set, the current folder name is used by default.
+: ${COMPOSE_PROJECT_NAME:="raw"}
+
 : ${DOCKER_REGISTRY:="artifactory.raw-labs.com/compose"}
 : ${RAW_STORAGE_SERVER_BASE_PATH:="/var/tmp/rawcache"}
 : ${JAVA_OPTS:=""}
