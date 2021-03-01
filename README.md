@@ -1,12 +1,11 @@
-# Running RAW with docker-compose
+# Running RAW with Docker Compose.
 
-This repository contains the scripts and configuration to run RAW using docker-compose.
+This repository contains the scripts and configuration to run RAW using Docker Compose.
 
 ## Pre-requisites
 
 - docker
 - docker-compose
-
 
 ## Setting up
 
@@ -43,15 +42,3 @@ To access the frontend, open a browser and go to "localhost:9000".
 
 The logs of the drivers can be found in the host directory `/tmp/raw-driver-logs`.
 This directory is mapped to the docker container running the driver.
-
-## Configuration
-
-The configuration is in the `conf/` subdirectory, organized by RAW process (frontend, creds,
-executor, storage).
-The configuration of the driver is a special case, because the driver is launched at runtime by the RAW Executor.
-The Java options used to launch the driver are set in `conf/raw-executor/driver-java-options`.
-In particular, you can set here the number of threads used by Spark (the spark.master=local[k] setting) and the Java Heap size.
-
-### Monitoring Spark
-The driver docker image exposes the port 4040 for the Spark UI.
-
