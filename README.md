@@ -1,4 +1,4 @@
-# Running RAW with Dockr Compose.
+# Running RAW with Docker Compose.
 
 This repository contains the scripts and configuration to run RAW using Docker Compose.
 
