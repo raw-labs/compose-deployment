@@ -66,7 +66,7 @@ services:
       JAVA_OPTS: ${JAVA_OPTS} ${EXECUTOR_JAVA_OPTS}
       HIVE_VERSION: ${HIVE_VERSION}
       HIVE_HOME: ${HIVE_HOME}
-      HDFS_HOSTNAME: ${HOSTNAME}
+      HDFS_HOSTNAME: ${PUBLIC_ADDRESS}
 
   raw-frontend:
     image: ${DOCKER_REGISTRY}/raw-frontend-compose:${RAW_VERSION}
@@ -85,6 +85,7 @@ services:
       - ./conf/auth.conf:/opt/docker/conf/auth.conf:ro
     environment:
       JAVA_OPTS: ${JAVA_OPTS} ${FRONTEND_JAVA_OPTS}
+      PUBLIC_ADDRESS: ${PUBLIC_ADDRESS}
 
 volumes:
   raw_postgres:

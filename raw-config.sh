@@ -16,4 +16,5 @@ export CREDS_JAVA_OPTS=""
 export STORAGE_JAVA_OPTS=""
 export FRONTEND_JAVA_OPTS=""
 
-export RAW_VERSION=<CONTACT US>
+export RAW_VERSION="<CONTACT US>"
+export PUBLIC_ADDRESS="localhost"
