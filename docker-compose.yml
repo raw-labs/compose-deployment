@@ -67,7 +67,8 @@ services:
       - ./conf/raw-executor/driver-java-options:/opt/docker/conf/driver-java-options:ro
       - ./conf/auth.conf:/opt/docker/conf/auth.conf:ro
       - cache:/var/tmp/rawcache
-      - /tmp/raw-driver-logs:/tmp/raw-driver-logs
+      - ${RAW_LOGS}:/tmp/raw-driver-logs
+      - ${RAW_DATA}:/data
       - /var/run/docker.sock:/var/run/docker.sock
     environment:
       JAVA_OPTS: ${JAVA_OPTS} ${EXECUTOR_JAVA_OPTS}

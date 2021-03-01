@@ -4,6 +4,9 @@
 # etc... If this is not set, the current folder name is used by default.
 : ${COMPOSE_PROJECT_NAME:="raw"}
 
+: ${RAW_LOGS:="/tmp/raw-driver-logs"}
+: ${RAW_DATA:="$(pwd)/data"}
+
 : ${DOCKER_REGISTRY:="artifactory.raw-labs.com/compose"}
 : ${JAVA_OPTS:=""}
 
@@ -19,6 +22,7 @@
     -Draw.executor.spark.docker-driver.volumes.0=$(pwd)/conf/raw-driver/logback.xml:/opt/docker/conf/logback.xml:ro
     -Draw.executor.spark.docker-driver.volumes.1=${COMPOSE_PROJECT_NAME}_cache:/var/tmp/rawcache
     -Draw.executor.spark.docker-driver.volumes.2=$(pwd)/conf/raw-driver/core-site.xml:/opt/docker/conf/core-site.xml:ro
+    -Draw.executor.spark.docker-driver.volumes.3=${RAW_DATA}:/data:ro
     -Draw.executor.spark.docker-driver.image-name=${DOCKER_REGISTRY}/raw-driver-docker-compose
 "}
 
