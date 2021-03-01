@@ -12,7 +12,7 @@ services:
       POSTGRES_DB: raw
     volumes:
       - postgres:/var/lib/postgresql/data
-      - ./init-postgres/:/docker-entrypoint-initdb.d/
+      - ./init-postgres/:/docker-entrypoint-initdb.d/:ro
 
   raw-creds:
     image: ${DOCKER_REGISTRY}/raw-creds-compose:${RAW_VERSION}
