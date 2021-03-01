@@ -23,7 +23,7 @@ Edit the file `raw-config.sh` and set the variable `RAW_VERSION` to the version 
 Finally, login to the docker registry with the following command `docker login artifactory.raw-labs.com/compose` and type the username and password that you received from us.
 
 
-##  Runing
+##  Running
 
 Run `start.sh` to launch the docker containers with RAW.
 The first time that is launched, the script will download the docker images. Afterwards, it will reuse the images present locally.
@@ -42,3 +42,10 @@ To access the frontend, open a browser and go to "localhost:9000".
 
 The logs of the drivers can be found in the host directory `/tmp/raw-driver-logs`.
 This directory is mapped to the docker container running the driver.
+
+
+## Configuration		
+
+The configuration is in the `conf/` subdirectory, organized by RAW process (frontend, creds, executor, storage).		
+The configuration of the driver is a special case, because the driver is launched at runtime by the RAW Executor.		
+The Java options used to launch the driver are set in `conf/raw-executor/driver-java-options`.
