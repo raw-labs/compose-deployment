@@ -53,7 +53,7 @@ services:
     # So this has to be opened to the web browser directly as it seems some
     # calls are made directly to the executor instead of going through the frontend.
     ports:
-      - "54321:54321"
+      - "${RAW_EXECUTOR_PORT}:54321"
     depends_on:
       - raw-creds
       - postgres
@@ -80,7 +80,7 @@ services:
     image: ${DOCKER_REGISTRY}/raw-frontend-compose:${RAW_VERSION}
     entrypoint: ["/wait-for-it.sh", "postgres:5432", "--", "/opt/docker/bin/raw-frontend-compose"]
     ports:
-      - "9000:9000"
+      - "${RAW_FRONTEND_PORT}:9000"
     depends_on:
       - raw-creds
       - raw-executor
@@ -94,6 +94,7 @@ services:
     environment:
       JAVA_OPTS: ${JAVA_OPTS} ${FRONTEND_JAVA_OPTS}
       PUBLIC_ADDRESS: ${PUBLIC_ADDRESS}
+      RAW_EXECUTOR_PORT: ${RAW_EXECUTOR_PORT}
 
 volumes:
   postgres:

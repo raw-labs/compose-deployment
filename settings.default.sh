@@ -7,6 +7,9 @@
 : ${RAW_LOGS:="/tmp/raw-driver-logs"}
 : ${RAW_DATA:="$(pwd)/data"}
 
+: ${RAW_EXECUTOR_PORT:="54321"}
+: ${RAW_FRONTEND_PORT:="9000"}
+
 : ${DOCKER_REGISTRY:="artifactory.raw-labs.com/compose"}
 : ${JAVA_OPTS:=""}
 
