@@ -1,2 +1,4 @@
 etc/
+data/
+raw-driver-logs/
 settings.local.sh
