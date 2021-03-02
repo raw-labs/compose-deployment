@@ -14,6 +14,12 @@ then
 	exit 1
 fi
 
-docker pull ${DOCKER_REGISTRY}/raw-driver-docker-compose:${RAW_VERSION}
+if [ "$1" == "up" ]
+then
+	echo "-- Pulling images"
+	docker pull ${DOCKER_REGISTRY}/raw-driver-docker-compose:${RAW_VERSION}
+	echo ""
+fi
 
+echo "-- Executing \"docker-compose -f docker-compose.yml $@\""
 docker-compose -f docker-compose.yml $@
