@@ -10,6 +10,13 @@
 : ${RAW_EXECUTOR_PORT:="54321"}
 : ${RAW_FRONTEND_PORT:="9000"}
 
+: ${PROXY_HTTP_PORT:="80"}
+: ${PROXY_HTTPS_PORT:="443"}
+: ${COMPOSE_FILE:="docker-compose.yml"}
+
+: ${RAW_VERSION:=""}
+: ${PUBLIC_ADDRESS:="localhost"}
+
 : ${DOCKER_REGISTRY:="artifactory.raw-labs.com/compose"}
 : ${JAVA_OPTS:=""}
 
@@ -37,6 +44,3 @@
 : ${CREDS_JAVA_OPTS:=""}
 : ${STORAGE_JAVA_OPTS:=""}
 : ${FRONTEND_JAVA_OPTS:=""}
-
-: ${RAW_VERSION:=""}
-: ${PUBLIC_ADDRESS:="localhost"}

@@ -21,5 +21,5 @@ then
 	echo ""
 fi
 
-echo "-- Executing \"docker-compose -f docker-compose.yml $@\""
-docker-compose -f docker-compose.yml $@
+echo "-- Executing \"docker-compose -f ${COMPOSE_FILE} $@\""
+docker-compose -f ${COMPOSE_FILE} $@

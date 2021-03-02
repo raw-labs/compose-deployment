@@ -1,4 +1,5 @@
-etc/
+certs/
 data/
+etc/
 raw-driver-logs/
 settings.local.sh
