@@ -14,7 +14,7 @@ services:
       - postgres:/var/lib/postgresql/data
       - ./init-postgres/:/docker-entrypoint-initdb.d/:ro
 
-  raw-creds:
+  creds:
     image: ${DOCKER_REGISTRY}/raw-creds-compose:${RAW_VERSION}
     entrypoint: ["/wait-for-it.sh", "postgres:5432", "--", "/opt/docker/bin/raw-creds-compose"]
     # The container port will be available on raw-creds:54322 to the other services,
@@ -32,7 +32,7 @@ services:
     environment:
       JAVA_OPTS: ${JAVA_OPTS} ${CREDS_JAVA_OPTS}
 
-  raw-storage:
+  storage:
     image: ${DOCKER_REGISTRY}/raw-storage-compose:${RAW_VERSION}
     # The container port will be available on raw-storage:54323 to the other services,
     # This is left for easy debugging when needed.
@@ -47,7 +47,7 @@ services:
     environment:
       JAVA_OPTS: ${JAVA_OPTS} ${STORAGE_JAVA_OPTS}
 
-  raw-executor:
+  executor:
     image: ${DOCKER_REGISTRY}/raw-executor-compose:${RAW_VERSION}
     entrypoint: ["/wait-for-it.sh", "postgres:5432", "--", "/opt/docker/bin/raw-executor-compose"]
     # So this has to be opened to the web browser directly as it seems some
@@ -55,9 +55,9 @@ services:
     ports:
       - "${RAW_EXECUTOR_PORT}:54321"
     depends_on:
-      - raw-creds
+      - creds
       - postgres
-      - raw-storage
+      - storage
     volumes:
       - ./wait-for-it.sh:/wait-for-it.sh:ro
       - ./etc/raw-common/raw.license:/etc/raw-common/raw.license:ro
@@ -76,14 +76,14 @@ services:
       HIVE_HOME: ${HIVE_HOME}
       HDFS_HOSTNAME: ${PUBLIC_ADDRESS}
 
-  raw-frontend:
+  frontend:
     image: ${DOCKER_REGISTRY}/raw-frontend-compose:${RAW_VERSION}
     entrypoint: ["/wait-for-it.sh", "postgres:5432", "--", "/opt/docker/bin/raw-frontend-compose"]
     ports:
       - "${RAW_FRONTEND_PORT}:9000"
     depends_on:
-      - raw-creds
-      - raw-executor
+      - creds
+      - executor
       - postgres
     volumes:
       - ./wait-for-it.sh:/wait-for-it.sh:ro
