@@ -14,6 +14,8 @@
 : ${PROXY_HTTPS_PORT:="443"}
 : ${COMPOSE_FILE:="docker-compose.yml"}
 
+: ${AUTH_CONF:="./conf/auth-none.conf"}
+
 : ${RAW_VERSION:=""}
 : ${PUBLIC_ADDRESS:="localhost"}
 

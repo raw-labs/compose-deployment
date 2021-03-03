@@ -27,7 +27,7 @@ services:
       - ./etc/raw-common/raw.license:/etc/raw-common/raw.license:ro
       - ./conf/raw-creds/application.conf:/opt/docker/conf/application.conf:ro
       - ./conf/raw-creds/logback.xml:/opt/docker/conf/logback.xml:ro
-      - ./conf/auth.conf:/opt/docker/conf/auth.conf:ro
+      - ${AUTH_CONF}:/opt/docker/conf/auth.conf:ro
     environment:
       JAVA_OPTS: ${JAVA_OPTS} ${CREDS_JAVA_OPTS}
 
@@ -41,7 +41,7 @@ services:
       - ./etc/raw-common/raw.license:/etc/raw-common/raw.license:ro
       - ./conf/raw-storage/application.conf:/opt/docker/conf/application.conf:ro
       - ./conf/raw-storage/logback.xml:/opt/docker/conf/logback.xml:ro
-      - ./conf/auth.conf:/opt/docker/conf/auth.conf:ro
+      - ${AUTH_CONF}:/opt/docker/conf/auth.conf:ro
       - cache:/var/tmp/rawcache
     environment:
       JAVA_OPTS: ${JAVA_OPTS} ${STORAGE_JAVA_OPTS}
@@ -64,7 +64,7 @@ services:
       - ./conf/raw-executor/application.ini:/opt/docker/conf/application.ini:ro
       - ./conf/raw-executor/logback.xml:/opt/docker/conf/logback.xml:ro
       - ./conf/raw-executor/driver-java-options:/opt/docker/conf/driver-java-options:ro
-      - ./conf/auth.conf:/opt/docker/conf/auth.conf:ro
+      - ${AUTH_CONF}:/opt/docker/conf/auth.conf:ro
       - cache:/var/tmp/rawcache
       - ${RAW_LOGS}:/tmp/raw-driver-logs
       - ${RAW_DATA}:/data
@@ -90,7 +90,7 @@ services:
       - ./conf/raw-frontend/application.conf:/opt/docker/conf/application.conf:ro
       - ./conf/raw-frontend/common.conf:/opt/docker/conf/common.conf:ro
       - ./conf/raw-frontend/logback.xml:/opt/docker/conf/logback.xml:ro
-      - ./conf/auth.conf:/opt/docker/conf/auth.conf:ro
+      - ${AUTH_CONF}:/opt/docker/conf/auth.conf:ro
     environment:
       JAVA_OPTS: ${JAVA_OPTS} ${FRONTEND_JAVA_OPTS}
       PUBLIC_ADDRESS: ${PUBLIC_ADDRESS}
