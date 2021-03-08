@@ -14,6 +14,8 @@
 : ${PROXY_HTTPS_PORT:="443"}
 : ${COMPOSE_FILE:="docker-compose.yml"}
 
+: ${PROXY_CERTS_CRT:="./conf/certs/proxy.crt"}
+: ${PROXY_CERTS_KEY:="./conf/certs/proxy.key"}
 : ${AUTH_CONF:="./conf/auth-none.conf"}
 
 : ${RAW_VERSION:=""}
