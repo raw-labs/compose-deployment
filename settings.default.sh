@@ -4,6 +4,7 @@
 # etc... If this is not set, the current folder name is used by default.
 : ${COMPOSE_PROJECT_NAME:="raw"}
 
+: ${RAW_LICENSE:="./conf/raw.license"}
 : ${RAW_LOGS:="/tmp/raw-driver-logs"}
 : ${RAW_DATA:="$(pwd)/data"}
 

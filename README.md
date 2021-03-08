@@ -16,7 +16,7 @@ Then [contact us](https://www.raw-labs.com/contact-us/) to obtain the following:
 - A version number of RAW
 - The credentials for the RAW Docker registry
 
-The license file should be copied to the following subfolder: `etc/raw-common/raw.license`.
+The license file should be copied to the following subfolder: `conf/raw.license`, or `RAW_LICENSE` pointed to the file.
 
 Edit the file `raw-config.sh` and set the variable `RAW_VERSION` to the version of RAW that you received from us.
 
