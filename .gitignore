@@ -1,5 +1,6 @@
-certs/
 data/
-etc/
+conf/certs/
+conf/raw.license
 raw-driver-logs/
-settings.local.sh
+settings.*.sh
+!settings.default.sh
