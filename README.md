@@ -11,7 +11,7 @@ This repository contains the scripts and configuration to run RAW using Docker C
 
 First download or clone this repository.
 
-Then contact us to obtain the following:
+Then [contact us](https://www.raw-labs.com/contact-us/) to obtain the following:
 - A license file
 - A version number of RAW
 - The credentials for the RAW Docker registry
