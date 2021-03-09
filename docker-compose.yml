@@ -16,10 +16,9 @@ services:
   creds:
     image: ${DOCKER_REGISTRY}/raw-creds-compose:${RAW_VERSION}
     entrypoint: ["/wait-for-it.sh", "postgres:5432", "--", "/opt/docker/bin/raw-creds-compose"]
-    # The container port will be available on raw-creds:54322 to the other services,
-    # This is left for easy debugging when needed.
-    #    ports:
-    #      - "54322:54322"
+    # This is required for rawcli and local Jupyter Notebooks to work
+    ports:
+      - "${RAW_CREDS_PORT}:54322"
     depends_on:
       - postgres
     volumes:
@@ -33,10 +32,9 @@ services:
 
   storage:
     image: ${DOCKER_REGISTRY}/raw-storage-compose:${RAW_VERSION}
-    # The container port will be available on raw-storage:54323 to the other services,
-    # This is left for easy debugging when needed.
-    #    ports:
-    #      - "54323:54323"
+    # This is required for rawcli and local Jupyter Notebooks to work
+    ports:
+      - "${RAW_STORAGE_PORT}:54323"
     volumes:
       - ${RAW_LICENSE}:/etc/raw-common/raw.license:ro
       - ./conf/raw-storage/application.conf:/opt/docker/conf/application.conf:ro
@@ -95,6 +93,8 @@ services:
       JAVA_OPTS: ${JAVA_OPTS} ${FRONTEND_JAVA_OPTS}
       PUBLIC_ADDRESS: ${PUBLIC_ADDRESS}
       RAW_EXECUTOR_PORT: ${RAW_EXECUTOR_PORT}
+      RAW_CREDS_PORT: ${RAW_CREDS_PORT}
+      RAW_STORAGE_PORT: ${RAW_STORAGE_PORT}
       PROXY_HTTPS_PORT: ${PROXY_HTTPS_PORT}
 
 volumes:
