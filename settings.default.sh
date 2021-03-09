@@ -6,7 +6,12 @@
 
 : ${RAW_LICENSE:="./conf/raw.license"}
 : ${RAW_LOGS:="/tmp/raw-driver-logs"}
-: ${RAW_DATA:="$(pwd)/data"}
+
+# RAW_DATA_* have to be absolute paths, as Spark does not allow relative ones.
+# Folder containing local data files.
+: ${RAW_DATA_SOURCE:="$(pwd)/data"}
+# Where to mount the local data folder within the container.
+: ${RAW_DATA_TARGET:="/data"}
 
 : ${RAW_EXECUTOR_PORT:="54321"}
 : ${RAW_FRONTEND_PORT:="9000"}
@@ -42,7 +47,7 @@
     -Draw.executor.spark.docker-driver.volumes.0=$(pwd)/conf/raw-driver/logback.xml:/opt/docker/conf/logback.xml:ro
     -Draw.executor.spark.docker-driver.volumes.1=${COMPOSE_PROJECT_NAME}_cache:/var/tmp/rawcache
     -Draw.executor.spark.docker-driver.volumes.2=$(pwd)/conf/raw-driver/core-site.xml:/opt/docker/conf/core-site.xml:ro
-    -Draw.executor.spark.docker-driver.volumes.3=${RAW_DATA}:/data:ro
+    -Draw.executor.spark.docker-driver.volumes.3=${RAW_DATA_SOURCE}:${RAW_DATA_TARGET}:ro
     -Draw.executor.spark.docker-driver.image-name=${DOCKER_REGISTRY}/raw-driver-docker-compose
 "}
 
