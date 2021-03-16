@@ -1,0 +1,6 @@
+data/
+conf/certs/
+conf/raw.license
+raw-driver-logs/
+settings.*.sh
+!settings.default.sh

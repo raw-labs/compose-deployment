@@ -1,4 +1,22 @@
 services:
+  proxy:
+    image: nginx:stable-alpine
+    command: [ "nginx", "-g", "daemon off;" ]
+    depends_on:
+      - frontend
+      - executor
+    volumes:
+      - ./conf/nginx.conf:/etc/nginx/templates/nginx.conf.template:ro
+      - ${PROXY_CERTS_CRT}:/certs/proxy.crt:ro
+      - ${PROXY_CERTS_KEY}:/certs/proxy.key:ro
+    ports:
+      - ${PROXY_HTTP_PORT}:80
+      - ${PROXY_HTTPS_PORT}:443
+    environment:
+      PUBLIC_ADDRESS: ${PUBLIC_ADDRESS}
+      PROXY_HTTP_PORT: ${PROXY_HTTP_PORT}
+      PROXY_HTTPS_PORT: ${PROXY_HTTPS_PORT}
+
   postgres:
     image: postgres:12
     # The container port will be available on postgres:5432 to the other services,
@@ -16,9 +34,10 @@ services:
   creds:
     image: ${DOCKER_REGISTRY}/raw-creds-compose:${RAW_VERSION}
     entrypoint: ["/wait-for-it.sh", "postgres:5432", "--", "/opt/docker/bin/raw-creds-compose"]
-    # This is required for rawcli and local Jupyter Notebooks to work
-    ports:
-      - "${RAW_CREDS_PORT}:54322"
+    # The container port will be available on raw-creds:54322 to the other services,
+    # This is left for easy debugging when needed.
+    #    ports:
+    #      - "54322:54322"
     depends_on:
       - postgres
     volumes:
@@ -32,9 +51,10 @@ services:
 
   storage:
     image: ${DOCKER_REGISTRY}/raw-storage-compose:${RAW_VERSION}
-    # This is required for rawcli and local Jupyter Notebooks to work
-    ports:
-      - "${RAW_STORAGE_PORT}:54323"
+    # The container port will be available on raw-storage:54323 to the other services,
+    # This is left for easy debugging when needed.
+    #    ports:
+    #      - "54323:54323"
     volumes:
       - ${RAW_LICENSE}:/etc/raw-common/raw.license:ro
       - ./conf/raw-storage/application.conf:/opt/docker/conf/application.conf:ro
@@ -47,10 +67,10 @@ services:
   executor:
     image: ${DOCKER_REGISTRY}/raw-executor-compose:${RAW_VERSION}
     entrypoint: ["/wait-for-it.sh", "postgres:5432", "--", "/opt/docker/bin/raw-executor-compose"]
-    # So this has to be opened to the web browser directly as it seems some
-    # calls are made directly to the executor instead of going through the frontend.
-    ports:
-      - "${RAW_EXECUTOR_PORT}:54321"
+    # The container port will be available on postgres:5432 to the other services,
+    # This is left for easy debugging when needed.
+    #    ports:
+    #      - "${RAW_EXECUTOR_PORT}:54321"
     depends_on:
       - creds
       - postgres
@@ -76,8 +96,10 @@ services:
   frontend:
     image: ${DOCKER_REGISTRY}/raw-frontend-compose:${RAW_VERSION}
     entrypoint: ["/wait-for-it.sh", "postgres:5432", "--", "/opt/docker/bin/raw-frontend-compose"]
-    ports:
-      - "${RAW_FRONTEND_PORT}:9000"
+    # The container port will be available on frontend:9000 to the other services,
+    # This is left for easy debugging when needed.
+    #    ports:
+    #      - "${RAW_FRONTEND_PORT}:9000"
     depends_on:
       - creds
       - executor
@@ -85,7 +107,7 @@ services:
     volumes:
       - ./wait-for-it.sh:/wait-for-it.sh:ro
       - ${RAW_LICENSE}:/etc/raw-common/raw.license:ro
-      - ./conf/raw-frontend/application.conf:/opt/docker/conf/application.conf:ro
+      - ./conf/raw-frontend/application-proxy.conf:/opt/docker/conf/application.conf:ro
       - ./conf/raw-frontend/common.conf:/opt/docker/conf/common.conf:ro
       - ./conf/raw-frontend/logback.xml:/opt/docker/conf/logback.xml:ro
       - ${AUTH_CONF}:/opt/docker/conf/auth.conf:ro
