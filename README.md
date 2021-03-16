@@ -136,3 +136,7 @@ Settings are taken in the following order of precedence:
   2. Shell environment
   3. Deployment-specific `settings.local.sh`
   4. Default settings `settings.default.sh`
+
+## Report an Issue
+
+Report an issue [here](mailto:support@raw-labs.atlassian.net).
