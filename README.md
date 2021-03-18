@@ -42,7 +42,7 @@ By default we expose the following RAW services:
 
 Please keep in mind these ports will be accessible from the machine as well as any computer which can connect to your computer, and unless you setup some authentication, **without any credentials**.
 
-If you add files in the `data` sub directory, these will be visible within RAW under `/data`
+If you add files in the `data` sub directory, these will be visible within RAW under `file:/data`
 
 
 ### [Optional] TLS Proxy
