@@ -7,6 +7,7 @@ export SCRIPT_DIR
 cd "${SCRIPT_DIR}"
 
 # Setup environment
+# shellcheck disable=SC1090
 . "${SCRIPT_DIR}"/settings.sh
 
 if [ -z "${RAW_VERSION}" ]
