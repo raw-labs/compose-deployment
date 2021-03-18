@@ -16,7 +16,7 @@ then
 	exit 1
 fi
 
-if [ "$1" == "up" ]
+if [ "$1" = "up" ]
 then
 	echo "-- Pulling images"
 	docker pull "${DOCKER_REGISTRY}"/raw-driver-docker-compose:"${RAW_VERSION}"
