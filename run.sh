@@ -22,6 +22,6 @@ then
 	docker pull "${DOCKER_REGISTRY}"/raw-driver-docker-compose:"${RAW_VERSION}"
 	echo ""
 fi
-
+# shellcheck disable=SC2145
 echo "-- Executing \"docker-compose -f ${COMPOSE_FILE} $@\""
-docker-compose -f "${COMPOSE_FILE}" $@
+docker-compose -f "${COMPOSE_FILE}" "$@"
