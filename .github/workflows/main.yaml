@@ -1,0 +1,12 @@
+name: lint-pipeline
+on: [push]
+jobs:
+  shell-check:
+    runs-on: ubuntu-latest
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - name: Check out code
+        uses: actions/checkout@v2
+
+      - name: Run Shell Check
+        uses: azohra/shell-linter@latest
