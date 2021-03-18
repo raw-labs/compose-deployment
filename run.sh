@@ -2,7 +2,8 @@
 set -e
 
 # Find root folder
-export SCRIPT_DIR="$(cd "$(dirname "$0")"; pwd)"
+SCRIPT_DIR="$(cd "$(dirname "$0")"; pwd)"
+export SCRIPT_DIR
 cd "${SCRIPT_DIR}"
 
 # Setup environment
