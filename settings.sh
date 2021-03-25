@@ -1,3 +1,4 @@
+#!/bin/sh
 # The MIT License (MIT)
 #
 # Copyright (c) 2021 Data Intensive Applications and Systems Laboratory (DIAS)
