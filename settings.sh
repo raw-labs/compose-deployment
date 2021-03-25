@@ -1,3 +1,6 @@
+#!/bin/sh
+# shellcheck disable=SC1090,SC2013,SC2086
+
 # The MIT License (MIT)
 #
 # Copyright (c) 2021 Data Intensive Applications and Systems Laboratory (DIAS)
