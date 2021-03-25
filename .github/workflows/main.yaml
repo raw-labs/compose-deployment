@@ -10,5 +10,3 @@ jobs:
 
       - name: Run Shell Check
         uses: ludeeus/action-shellcheck@1.0.0
-        with:
-          ignore: ./settings.default.sh ./wait-for-it.sh

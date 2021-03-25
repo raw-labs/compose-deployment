@@ -1,3 +1,5 @@
+#!/bin/sh
+# shellcheck disable=SC2223
 : ${SHOW_SETTINGS:=false}
 
 # This is used to prefix resource names such as containers, networks,

@@ -1,4 +1,5 @@
 #!/bin/sh
+# shellcheck disable=SC1090,SC2013,SC2086
 
 # The MIT License (MIT)
 #
