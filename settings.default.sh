@@ -8,6 +8,7 @@
 
 : ${RAW_LICENSE:="./conf/raw.license"}
 : ${RAW_LOGS:="/tmp/raw-driver-logs"}
+: ${RAW_CACHE:="./raw-cache"}
 
 # RAW_DATA_* have to be absolute paths, as Spark does not allow relative ones.
 # Folder containing local data files.
