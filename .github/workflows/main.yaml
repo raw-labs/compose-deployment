@@ -11,4 +11,4 @@ jobs:
       - name: Run Shell Check
         uses: azohra/shell-linter@latest
         with:
-          path: run,start,settings,settings.default.sh
+          path: run,start,settings
