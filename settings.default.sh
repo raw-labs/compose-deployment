@@ -10,9 +10,8 @@
 : ${RAW_LOGS:="/tmp/raw-driver-logs"}
 : ${RAW_CACHE:="./raw-cache"}
 
-# RAW_DATA_* have to be absolute paths, as Spark does not allow relative ones.
 # Folder containing local data files.
-: ${RAW_DATA_SOURCE:="$(pwd)/data"}
+: ${RAW_DATA_SOURCE:="./data"}
 # Where to mount the local data folder within the container.
 : ${RAW_DATA_TARGET:="/data"}
 
@@ -47,12 +46,14 @@
 # docker-compose, which means we have to prefix ourselves in the same way
 # the docker volume names used, for example for the raw cache. The prefix
 # to use is `${COMPOSE_PROJECT_NAME}_`.
+# All source path have to be absolute paths here, as Spark does not allow
+# relative ones.
 : ${EXECUTOR_JAVA_OPTS:="
     ${SPARK_PORT}
     -Draw.executor.spark.docker-driver.volumes.0=$(pwd)/conf/raw-driver/logback.xml:/opt/docker/conf/logback.xml:ro
-    -Draw.executor.spark.docker-driver.volumes.1=${COMPOSE_PROJECT_NAME}_cache:/var/tmp/rawcache
-    -Draw.executor.spark.docker-driver.volumes.2=$(pwd)/conf/raw-driver/core-site.xml:/opt/docker/conf/core-site.xml:ro
-    -Draw.executor.spark.docker-driver.volumes.3=${RAW_DATA_SOURCE}:${RAW_DATA_TARGET}:ro
+    -Draw.executor.spark.docker-driver.volumes.1=$(pwd)/conf/raw-driver/core-site.xml:/opt/docker/conf/core-site.xml:ro
+    -Draw.executor.spark.docker-driver.volumes.2=${COMPOSE_PROJECT_NAME}_cache:/var/tmp/rawcache
+    -Draw.executor.spark.docker-driver.volumes.3=${COMPOSE_PROJECT_NAME}_data:${RAW_DATA_TARGET}:ro
     -Draw.executor.spark.docker-driver.image-name=${DOCKER_REGISTRY}/raw-driver-docker-compose
 "}
 
