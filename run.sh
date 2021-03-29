@@ -16,6 +16,11 @@ then
 	exit 1
 fi
 
+# We can't commit empty folders in git, nor set access permissions on them,
+# and the folder has to exist for the bind mount to work, so we create them
+# here.
+test -d "${RAW_CACHE}" || mkdir -p "${RAW_CACHE}"
+
 if [ "$1" = "up" ]
 then
 	echo "-- Pulling images"
