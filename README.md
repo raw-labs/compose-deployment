@@ -141,8 +141,8 @@ The Java options used to launch the driver are set in `conf/raw-executor/driver-
 
 For convenience, the following environment variables can be set to control the memory and number of cores 
 used by the driver:
-- RAW_DRIVER_MEM - Maximum heap size
-- RAW_DRIVER_CORES - Number of cores used by Spark in the driver.
+- `RAW_DRIVER_MEM` - Maximum heap size
+- `RAW_DRIVER_CORES` - Number of cores used by Spark in the driver.
 
 These variables can be defined as settings, as described previously.
 
