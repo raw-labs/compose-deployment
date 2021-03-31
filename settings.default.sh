@@ -31,6 +31,11 @@
 : ${RAW_VERSION:=""}
 : ${PUBLIC_ADDRESS:="localhost"}
 
+# Heap size of the driver, e.g., -Xmx${RAW_DRIVER_MEM} as an argument to the driver's JVM
+: ${RAW_DRIVER_MEM:="8g"}
+# Number of cores used by Spark, e.g., -Dspark.master=local[$RAW_DRIVER_CORES] as an argument to the driver's JVM 
+: ${RAW_DRIVER_CORES:="*"}
+
 : ${DOCKER_REGISTRY:="artifactory.raw-labs.com/compose"}
 : ${JAVA_OPTS:=""}
 

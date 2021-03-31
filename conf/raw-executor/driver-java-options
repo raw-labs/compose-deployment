@@ -1,5 +1,5 @@
--Dspark.master=local[*]
--Xmx8G
+-Dspark.master=local[${RAW_DRIVER_CORES}]
+-Xmx${RAW_DRIVER_MEM}
 -Dspark.executor.extraClassPath=.
 -Dspark.sql.hive.metastore.version=${HIVE_VERSION}
 -Dspark.sql.hive.metastore.jars=${HIVE_HOME}/lib/*
