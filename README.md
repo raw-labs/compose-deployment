@@ -106,6 +106,12 @@ For more information, please check the **docker-compose** documentation.
 
 To access the frontend, open a browser and go to [http://localhost:9000](http://localhost:9000) or `http://${PUBLIC_ADDRESS}` if you configured the proxy.
 
+### Configuration
+
+For convenience, the following environment variables can be set to control the memory and number of cores 
+used by the system. These values are applied per user session:
+- `RAW_DRIVER_MEM` - Maximum heap size. Example value is `8g`.
+- `RAW_DRIVER_CORES` - Number of cores used.
 
 ## Logs
 
@@ -113,7 +119,7 @@ The logs of the drivers can be found in the host directory `/tmp/raw-driver-logs
 This directory is mapped to the docker container running the driver.
 
 
-## Settings
+## Configuration
 
 All the settings have default values, but you can change them by either exporting in your shell the setting with its value, or creating `settings.local.sh` in the same folder as `settings.sh`:
 
@@ -130,22 +136,12 @@ Settings are taken in the following order of precedence:
   3. Deployment-specific `settings.local.sh`
   4. Default settings `settings.default.sh`
 
+### Configuration of services
 
-## Configuration
+The configuration is in the `conf/` subdirectory, organized by RAW service (frontend, credentials service, executor service, storage service).
 
-The configuration is in the `conf/` subdirectory, organized by RAW process (frontend, creds, executor, storage).
-
-### Driver
-The configuration of the driver is a special case, because the driver is launched at runtime by the RAW Executor.
-The Java options used to launch the driver are set in `conf/raw-executor/driver-java-options`.
-
-For convenience, the following environment variables can be set to control the memory and number of cores 
-used by the driver:
-- `RAW_DRIVER_MEM` - Maximum heap size
-- `RAW_DRIVER_CORES` - Number of cores used by Spark in the driver.
-
-These variables can be defined as settings, as described previously.
-
+The configuration of the driver, responsible for running a user session, is a special case, because the driver is launched at runtime by the RAW Executor.
+The JVM options used to launch the driver are set in `conf/raw-executor/driver-java-options`. In principle, there is no need to change these options.
 
 ## Report an Issue
 
