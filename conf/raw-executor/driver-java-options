@@ -4,4 +4,4 @@
 -Dspark.sql.hive.metastore.version=${HIVE_VERSION}
 -Dspark.sql.hive.metastore.jars=${HIVE_HOME}/lib/*
 -Dspark.sql.hive.metastore.sharedPrefixes=com.mysql.jdbc,org.postgresql,com.microsoft.sqlserver,oracle.jdbc,org.apache.derby
--Xss8m
+-Xss64m
