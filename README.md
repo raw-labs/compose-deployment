@@ -105,17 +105,23 @@ For more information, please check the **docker-compose** documentation.
 
 To access the frontend, open a browser and go to [http://localhost:9000](http://localhost:9000) or `http://${PUBLIC_ADDRESS}` if you configured the proxy.
 
+#### Note
+On macOS, when launching RAW for the first time you may be prompted to grant permissions to RAW to access your home directory. 
+This is expected as RAW requires write access to the directory where it is installed.
+
 ### Configuration
 
 For convenience, the following environment variables can be set to control the memory and number of cores 
 used by the system. These values are applied per user session:
 - `RAW_DRIVER_MEM` - Maximum heap size. Example value is `8g`.
 - `RAW_DRIVER_CORES` - Number of cores used.
+- `RAW_CACHE_GC_THRESHOLD` - The size of the cache that when reached will trigger a garbage collection. For instance, 10GB or 512MB.
 
 ## Logs
 
-The logs of the drivers can be found in the host directory `/tmp/raw-driver-logs`.
-This directory is mapped to the docker container running the driver.
+The logs are stored in the current working directory, under  `./logs`.
+This directory contains a subdirectory for each process, e.g., `./logs/executor`, `./logs/driver`, and so on.
+The logs from the previous run are deleted when launching RAW.
 
 
 ## Configuration

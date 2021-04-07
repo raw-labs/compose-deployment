@@ -20,6 +20,12 @@ fi
 # and the folder has to exist for the bind mount to work, so we create them
 # here.
 test -d "${RAW_CACHE}" || mkdir -p "${RAW_CACHE}"
+test -d "${RAW_LOGS}" || mkdir -p "${RAW_LOGS}"
+test -d "${RAW_LOGS}/executor" || mkdir -p "${RAW_LOGS}/executor"
+test -d "${RAW_LOGS}/driver" || mkdir -p "${RAW_LOGS}/driver"
+test -d "${RAW_LOGS}/creds" || mkdir -p "${RAW_LOGS}/creds"
+test -d "${RAW_LOGS}/storage" || mkdir -p "${RAW_LOGS}/storage"
+test -d "${RAW_LOGS}/frontend" || mkdir -p "${RAW_LOGS}/frontend"
 
 if [ "$1" = "up" ]
 then

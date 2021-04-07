@@ -7,7 +7,7 @@
 : ${COMPOSE_PROJECT_NAME:="raw"}
 
 : ${RAW_LICENSE:="./conf/raw.license"}
-: ${RAW_LOGS:="/tmp/raw-driver-logs"}
+: ${RAW_LOGS:="./logs"}
 : ${RAW_CACHE:="./raw-cache"}
 
 # Folder containing local data files.
@@ -33,8 +33,14 @@
 
 # Heap size of the driver, e.g., -Xmx${RAW_DRIVER_MEM} as an argument to the driver's JVM
 : ${RAW_DRIVER_MEM:="8g"}
+
 # Number of cores used by Spark, e.g., -Dspark.master=local[$RAW_DRIVER_CORES] as an argument to the driver's JVM 
 : ${RAW_DRIVER_CORES:="*"}
+
+# Size of the RAW cache that will trigger a GC
+: ${RAW_CACHE_GC_THRESHOLD:="500MB"}
+
+
 
 : ${DOCKER_REGISTRY:="artifactory.raw-labs.com/compose"}
 : ${JAVA_OPTS:=""}
@@ -59,6 +65,7 @@
     -Draw.executor.spark.docker-driver.volumes.1=$(pwd)/conf/raw-driver/core-site.xml:/opt/docker/conf/core-site.xml:ro
     -Draw.executor.spark.docker-driver.volumes.2=${COMPOSE_PROJECT_NAME}_cache:/var/tmp/rawcache
     -Draw.executor.spark.docker-driver.volumes.3=${COMPOSE_PROJECT_NAME}_data:${RAW_DATA_TARGET}:ro
+    -Draw.executor.spark.docker-driver.volumes.4=${COMPOSE_PROJECT_NAME}_logs_driver:/var/log/raw
     -Draw.executor.spark.docker-driver.image-name=${DOCKER_REGISTRY}/raw-driver-docker-compose
 "}
 

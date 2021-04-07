@@ -26,6 +26,7 @@ services:
       - ${RAW_LICENSE}:/etc/raw-common/raw.license:ro
       - ./conf/raw-creds/application.conf:/opt/docker/conf/application.conf:ro
       - ./conf/raw-creds/logback.xml:/opt/docker/conf/logback.xml:ro
+      - logs_creds:/var/log/raw
       - ${AUTH_CONF}:/opt/docker/conf/auth.conf:ro
     environment:
       JAVA_OPTS: ${JAVA_OPTS} ${CREDS_JAVA_OPTS}
@@ -40,9 +41,11 @@ services:
       - ./conf/raw-storage/application.conf:/opt/docker/conf/application.conf:ro
       - ./conf/raw-storage/logback.xml:/opt/docker/conf/logback.xml:ro
       - ${AUTH_CONF}:/opt/docker/conf/auth.conf:ro
+      - logs_storage:/var/log/raw
       - cache:/var/tmp/rawcache
     environment:
       JAVA_OPTS: ${JAVA_OPTS} ${STORAGE_JAVA_OPTS}
+      RAW_CACHE_GC_THRESHOLD: ${RAW_CACHE_GC_THRESHOLD}
 
   executor:
     image: ${DOCKER_REGISTRY}/raw-executor-compose:${RAW_VERSION}
@@ -64,14 +67,14 @@ services:
       - ./conf/raw-executor/driver-java-options:/opt/docker/conf/driver-java-options:ro
       - ${AUTH_CONF}:/opt/docker/conf/auth.conf:ro
       - cache:/var/tmp/rawcache
-      - ${RAW_LOGS}:/tmp/raw-driver-logs
+      - logs_executor:/var/log/raw
       - data:${RAW_DATA_TARGET}
       - /var/run/docker.sock:/var/run/docker.sock
     environment:
       JAVA_OPTS: ${JAVA_OPTS} ${EXECUTOR_JAVA_OPTS}
-      HIVE_VERSION: ${HIVE_VERSION}
       RAW_DRIVER_MEM: ${RAW_DRIVER_MEM}
       RAW_DRIVER_CORES: ${RAW_DRIVER_CORES}
+      HIVE_VERSION: ${HIVE_VERSION}
       HIVE_HOME: ${HIVE_HOME}
       HDFS_HOSTNAME: ${PUBLIC_ADDRESS}
 
@@ -90,6 +93,7 @@ services:
       - ./conf/raw-frontend/application.conf:/opt/docker/conf/application.conf:ro
       - ./conf/raw-frontend/common.conf:/opt/docker/conf/common.conf:ro
       - ./conf/raw-frontend/logback.xml:/opt/docker/conf/logback.xml:ro
+      - logs_frontend:/var/log/raw
       - ${AUTH_CONF}:/opt/docker/conf/auth.conf:ro
     environment:
       JAVA_OPTS: ${JAVA_OPTS} ${FRONTEND_JAVA_OPTS}
@@ -111,3 +115,28 @@ volumes:
       type: "none"
       o: "bind"
       device: "${RAW_CACHE}"
+  logs_frontend:
+    driver_opts:
+      type: "none"
+      o: "bind"
+      device: "${RAW_LOGS}/frontend"
+  logs_creds:
+    driver_opts:
+      type: "none"
+      o: "bind"
+      device: "${RAW_LOGS}/creds"
+  logs_storage:
+    driver_opts:
+      type: "none"
+      o: "bind"
+      device: "${RAW_LOGS}/storage"
+  logs_executor:
+    driver_opts:
+      type: "none"
+      o: "bind"
+      device: "${RAW_LOGS}/executor"
+  logs_driver:
+    driver_opts:
+      type: "none"
+      o: "bind"
+      device: "${RAW_LOGS}/driver"
