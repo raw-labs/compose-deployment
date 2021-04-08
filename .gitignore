@@ -1,7 +1,7 @@
 data/
+logs/
 conf/certs/
 conf/raw.license
-raw-driver-logs/
 raw-cache/
 settings.*.sh
 !settings.default.sh
