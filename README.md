@@ -105,7 +105,7 @@ For more information, please check the **docker-compose** documentation.
 
 To access the frontend, open a browser and go to [http://localhost:9000](http://localhost:9000) or `http://${PUBLIC_ADDRESS}` if you configured the proxy.
 
-#### Note
+#### macOS
 On macOS, when launching RAW for the first time you may be prompted to grant permissions to RAW to access your home directory. 
 This is expected as RAW requires write access to the directory where it is installed.
 
@@ -113,9 +113,9 @@ This is expected as RAW requires write access to the directory where it is insta
 
 For convenience, the following environment variables can be set to control the memory and number of cores 
 used by the system. These values are applied per user session:
-- `RAW_DRIVER_MEM` - Maximum heap size. Example value is `8g`.
-- `RAW_DRIVER_CORES` - Number of cores used.
-- `RAW_CACHE_GC_THRESHOLD` - The size of the cache that when reached will trigger a garbage collection. For instance, 10GB or 512MB.
+- `RAW_DRIVER_MEM` - Maximum heap size. Default value is `8g`.
+- `RAW_DRIVER_CORES` - Number of cores used. Default value is the number of cores available.
+- `RAW_CACHE_GC_THRESHOLD` - The size of the cache that when reached will trigger a garbage collection. Default value is `10GB`.
 
 ## Logs
 

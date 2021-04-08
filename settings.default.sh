@@ -38,7 +38,7 @@
 : ${RAW_DRIVER_CORES:="*"}
 
 # Size of the RAW cache that will trigger a GC
-: ${RAW_CACHE_GC_THRESHOLD:="500MB"}
+: ${RAW_CACHE_GC_THRESHOLD:="10GB"}
 
 
 
