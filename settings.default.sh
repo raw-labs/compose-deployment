@@ -40,6 +40,9 @@
 # Size of the RAW cache that will trigger a GC
 : ${RAW_CACHE_GC_THRESHOLD:="10GB"}
 
+# Encryption key for Credentials service
+: ${RAW_CREDS_JDBC_ENCRYPTION_KEY:=""}
+
 
 
 : ${DOCKER_REGISTRY:="artifactory.raw-labs.com/compose"}
