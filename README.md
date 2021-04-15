@@ -7,6 +7,7 @@ This repository contains the scripts and configuration to run RAW using Docker C
 - docker
 - docker-compose
 
+The installation has been tested on Linux (Ubuntu).
 
 ## Setting up
 
