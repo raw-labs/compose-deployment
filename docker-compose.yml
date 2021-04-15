@@ -30,6 +30,7 @@ services:
       - ${AUTH_CONF}:/opt/docker/conf/auth.conf:ro
     environment:
       JAVA_OPTS: ${JAVA_OPTS} ${CREDS_JAVA_OPTS}
+      RAW_CREDS_JDBC_ENCRYPTION_KEY: ${RAW_CREDS_JDBC_ENCRYPTION_KEY}
 
   storage:
     image: ${DOCKER_REGISTRY}/raw-storage-compose:${RAW_VERSION}

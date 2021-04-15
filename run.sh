@@ -16,6 +16,12 @@ then
 	exit 1
 fi
 
+if [ -z "${RAW_CREDS_JDBC_ENCRYPTION_KEY}" ]
+then
+	echo "Please set RAW_CREDS_JDBC_ENCRYPTION_KEY, exiting..."
+	exit 1
+fi
+
 # We can't commit empty folders in git, nor set access permissions on them,
 # and the folder has to exist for the bind mount to work, so we create them
 # here.
