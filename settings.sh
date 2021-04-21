@@ -42,10 +42,9 @@ fi
 # creating a
 if [ -z "${RAW_CREDS_JDBC_ENCRYPTION_KEY}" ]
 then
-  encryption_key=$(openssl rand -base64 32)
   echo "Generating RAW_CREDS_JDBC_ENCRYPTION_KEY and saving it in settings.local.sh"
-  export RAW_CREDS_JDBC_ENCRYPTION_KEY=encryption_key
-  printf  "\n: \${RAW_CREDS_JDBC_ENCRYPTION_KEY:=${encryption_key}}" >> settings.local.sh
+  export RAW_CREDS_JDBC_ENCRYPTION_KEY=$(openssl rand -base64 32)
+  printf  "\n: \${RAW_CREDS_JDBC_ENCRYPTION_KEY:=\"%s\"}" "$RAW_CREDS_JDBC_ENCRYPTION_KEY">> settings.local.sh
 fi
 
 #  4. Default settings `settings.default.sh`
