@@ -39,12 +39,19 @@ then
 	. ${SCRIPT_DIR}/settings.local.sh
 fi
 
-# creating a
+# checking if a encryption key for creds server exists, if not create a new one
 if [ -z "${RAW_CREDS_JDBC_ENCRYPTION_KEY}" ]
 then
-  echo "Generating RAW_CREDS_JDBC_ENCRYPTION_KEY and saving it in settings.local.sh"
-  export RAW_CREDS_JDBC_ENCRYPTION_KEY=$(openssl rand -base64 32)
-  printf  "\n: \${RAW_CREDS_JDBC_ENCRYPTION_KEY:=\"%s\"}" "$RAW_CREDS_JDBC_ENCRYPTION_KEY">> settings.local.sh
+  if openssl help 2> /dev/null
+  then
+    echo "Generating credentials server encryption key and saving it in settings.local.sh"
+    export RAW_CREDS_JDBC_ENCRYPTION_KEY=$(openssl rand -base64 32)
+    printf  "\n: \${RAW_CREDS_JDBC_ENCRYPTION_KEY:=\"%s\"}" "$RAW_CREDS_JDBC_ENCRYPTION_KEY">> settings.local.sh
+  else
+    echo "Could not find openssl to generate credentials server encryption key, please install it using the command:"
+    echo "apt install openssl"
+    exit 1
+  fi
 fi
 
 #  4. Default settings `settings.default.sh`
