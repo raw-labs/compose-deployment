@@ -45,7 +45,8 @@ then
   if openssl help 2> /dev/null
   then
     echo "Generating credentials server encryption key and saving it in settings.local.sh"
-    export RAW_CREDS_JDBC_ENCRYPTION_KEY=$(openssl rand -base64 32)
+    RAW_CREDS_JDBC_ENCRYPTION_KEY=$(openssl rand -base64 32)
+    export RAW_CREDS_JDBC_ENCRYPTION_KEY
     printf  "\n: \${RAW_CREDS_JDBC_ENCRYPTION_KEY:=\"%s\"}" "$RAW_CREDS_JDBC_ENCRYPTION_KEY">> settings.local.sh
   else
     echo "Could not find openssl to generate credentials server encryption key."
