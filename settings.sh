@@ -49,8 +49,8 @@ then
     printf  "\n: \${RAW_CREDS_JDBC_ENCRYPTION_KEY:=\"%s\"}" "$RAW_CREDS_JDBC_ENCRYPTION_KEY">> settings.local.sh
   else
     echo "Could not find openssl to generate credentials server encryption key."
-    echo "If you are in a debian based system try installing it with the command: 'apt install openssl'"
-    echo "If not check with your distributions package manager or get instructions in https://www.openssl.org/source/"
+    echo "If you are in a Linux system try installing it with your distributions package manager eg.: apt or yum"
+    echo "If are using MacOs or Windows try searching for installation files for your operative system."
     exit 1
   fi
 fi
