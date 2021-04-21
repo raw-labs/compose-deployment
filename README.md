@@ -30,13 +30,7 @@ Then Login to the docker registry with the following command `docker login artif
 
 
 The Credentials service requires a secret AES symmetric key in order to encrypt the credentials stored in the underlying database.
-To generate the key, run:
-
-```
-$ openssl rand -base64 32
-```
-And assign the resulting key to the environment variable `RAW_CREDS_JDBC_ENCRYPTION_KEY` (this can be written in the `settings.local.sh` file, 
-as described above.
+One will be generated automatically the first time you run and stored in `settings.local.sh`.
 
 
 
