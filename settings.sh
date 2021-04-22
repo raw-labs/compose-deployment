@@ -1,5 +1,5 @@
 #!/bin/sh
-# shellcheck disable=SC1090,SC2013,SC2086
+# shellcheck disable=SC1090,SC1091,SC2013,SC2086
 
 # The MIT License (MIT)
 #
@@ -58,7 +58,6 @@ then
 fi
 
 #  4. Default settings `settings.default.sh`
-# shellcheck source=settings.default.sh
 . ${SCRIPT_DIR}/settings.default.sh
 
 if ${SHOW_SETTINGS}
