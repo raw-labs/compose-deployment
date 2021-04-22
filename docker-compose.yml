@@ -83,6 +83,7 @@ services:
     image: ${DOCKER_REGISTRY}/raw-frontend-compose:${RAW_VERSION}
     entrypoint: ["/wait-for-it.sh", "postgres:5432", "--", "/opt/docker/bin/raw-frontend-compose"]
     ports:
+
       - "${RAW_FRONTEND_PORT}:9000"
     depends_on:
       - creds
@@ -103,6 +104,18 @@ services:
       RAW_CREDS_PORT: ${RAW_CREDS_PORT}
       RAW_STORAGE_PORT: ${RAW_STORAGE_PORT}
       PROXY_HTTPS_PORT: ${PROXY_HTTPS_PORT}
+
+  jupyter:
+    image: raw-jupyter:1.14.23_RD-2456.65.8e2d161
+    ports:
+      - "${RAW_JUPYTER_PORT}:8888"
+    depends_on:
+      - storage
+      - creds
+      - executor
+    volumes:
+      - ./conf/raw-jupyter/raw.ini:/home/jovyan/.raw.ini:ro
+      - ./conf/raw-jupyter/jupyter_notebook_config.py:/home/jovyan/.jupyter/jupyter_notebook_config.py:ro
 
 volumes:
   postgres:
