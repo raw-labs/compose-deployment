@@ -49,9 +49,7 @@ then
     export RAW_CREDS_JDBC_ENCRYPTION_KEY
     printf  "\n: \${RAW_CREDS_JDBC_ENCRYPTION_KEY:=\"%s\"}" "$RAW_CREDS_JDBC_ENCRYPTION_KEY">> settings.local.sh
   else
-    echo "Could not find openssl to generate credentials server encryption key."
-    echo "If you are in a Linux system try installing it with your distributions package manager eg.: apt or yum"
-    echo "If are using MacOs or Windows try searching for installation files for your operative system."
+    echo "Could not find OpenSSL, which is required to generate a server encryption key. Please install 'openssl' and try again."
     exit 1
   fi
 fi
