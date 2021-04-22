@@ -36,7 +36,7 @@ fi
 #  2. Deployment-specific `settings.local.sh`
 if test -f ${SCRIPT_DIR}/settings.local.sh
 then
-    # shellcheck source=${SCRIPT_DIR}/settings.local.sh
+    # shellcheck disable=SC1091
 	. ${SCRIPT_DIR}/settings.local.sh
 fi
 
@@ -58,7 +58,7 @@ then
 fi
 
 #  4. Default settings `settings.default.sh`
-# shellcheck source=${SCRIPT_DIR}/settings.default.sh
+# shellcheck source=settings.default.sh
 . ${SCRIPT_DIR}/settings.default.sh
 
 if ${SHOW_SETTINGS}
