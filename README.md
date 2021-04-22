@@ -30,12 +30,9 @@ Then Login to the docker registry with the following command `docker login artif
 
 
 The Credentials service requires a secret AES symmetric key in order to encrypt the credentials stored in the underlying database.
-One will be generated automatically the first time you run and stored in `settings.local.sh`.
-
-
+This will be generated automatically the first time you run RAW, but requires OpenSSL to be installed.
 
 **Note:** The following sections will assume the default values are used for the settings, adapt as needed if you make modifications.
-
 
 ### Basic setup
 
