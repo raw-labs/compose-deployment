@@ -107,6 +107,7 @@ services:
 
   jupyter:
     image: raw-jupyter:1.14.23_RD-2456.65.8e2d161
+    entrypoint: ["jupyter", "notebook", "--no-browser","--NotebookApp.token=''","--NotebookApp.password=''"]
     ports:
       - "${RAW_JUPYTER_PORT}:8888"
     depends_on:
@@ -115,7 +116,6 @@ services:
       - executor
     volumes:
       - ./conf/raw-jupyter/raw.ini:/home/jovyan/.raw.ini:ro
-      - ./conf/raw-jupyter/jupyter_notebook_config.py:/home/jovyan/.jupyter/jupyter_notebook_config.py:ro
 
 volumes:
   postgres:
