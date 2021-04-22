@@ -36,6 +36,7 @@ fi
 #  2. Deployment-specific `settings.local.sh`
 if test -f ${SCRIPT_DIR}/settings.local.sh
 then
+    # shellcheck source=${SCRIPT_DIR}/settings.local.sh
 	. ${SCRIPT_DIR}/settings.local.sh
 fi
 
@@ -45,7 +46,8 @@ then
   if openssl help 2> /dev/null
   then
     echo "Generating credentials server encryption key and saving it in settings.local.sh"
-    export RAW_CREDS_JDBC_ENCRYPTION_KEY=$(openssl rand -base64 32)
+    RAW_CREDS_JDBC_ENCRYPTION_KEY=$(openssl rand -base64 32)
+    export RAW_CREDS_JDBC_ENCRYPTION_KEY
     printf  "\n: \${RAW_CREDS_JDBC_ENCRYPTION_KEY:=\"%s\"}" "$RAW_CREDS_JDBC_ENCRYPTION_KEY">> settings.local.sh
   else
     echo "Could not find openssl to generate credentials server encryption key."
@@ -56,6 +58,7 @@ then
 fi
 
 #  4. Default settings `settings.default.sh`
+# shellcheck source=${SCRIPT_DIR}/settings.default.sh
 . ${SCRIPT_DIR}/settings.default.sh
 
 if ${SHOW_SETTINGS}
