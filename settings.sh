@@ -1,5 +1,5 @@
 #!/bin/sh
-# shellcheck disable=SC1090,SC2013,SC2086
+# shellcheck disable=SC1090,SC1091,SC2013,SC2086
 
 # The MIT License (MIT)
 #
@@ -37,6 +37,21 @@ fi
 if test -f ${SCRIPT_DIR}/settings.local.sh
 then
 	. ${SCRIPT_DIR}/settings.local.sh
+fi
+
+# checking if a encryption key for creds server exists, if not create a new one
+if [ -z "${RAW_CREDS_JDBC_ENCRYPTION_KEY}" ]
+then
+  if openssl help 2> /dev/null
+  then
+    echo "Generating credentials server encryption key and saving it in settings.local.sh"
+    RAW_CREDS_JDBC_ENCRYPTION_KEY=$(openssl rand -base64 32)
+    export RAW_CREDS_JDBC_ENCRYPTION_KEY
+    printf  "\n: \${RAW_CREDS_JDBC_ENCRYPTION_KEY:=\"%s\"}" "$RAW_CREDS_JDBC_ENCRYPTION_KEY">> settings.local.sh
+  else
+    echo "Could not find OpenSSL, which is required to generate a server encryption key. Please install 'openssl' and try again."
+    exit 1
+  fi
 fi
 
 #  4. Default settings `settings.default.sh`
