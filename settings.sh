@@ -36,7 +36,6 @@ fi
 #  2. Deployment-specific `settings.local.sh`
 if test -f ${SCRIPT_DIR}/settings.local.sh
 then
-    # shellcheck disable=SC1091
 	. ${SCRIPT_DIR}/settings.local.sh
 fi
 
