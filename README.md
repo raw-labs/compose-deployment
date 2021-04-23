@@ -88,11 +88,7 @@ And copy `conf/auth-auth0.conf` to `conf/auth-auth0-your-config.conf` and fill i
 
 ## Running
 
-In order to manage the RAW services, use `run.sh <docker-compose commands>`.
-
-If you add files in the `data` sub directory, these will be visible within RAW under `file:/data`
-
-For example:
+In order to manage the RAW services, use `run.sh <docker-compose commands>`. For example:
 
  * Start and stay attached to the services consoles:
    1. `./run.sh up`
@@ -107,9 +103,9 @@ For example:
 
 For more information, please check the **docker-compose** documentation.
 
-To use Jupyter go to [http://localhost:8888](http://localhost:8888). 
-
-To access the adminstration interface go to [http://localhost:9000](http://localhost:9000) (or `http://${PUBLIC_ADDRESS}` if you configured the proxy).
+Once RAW services have started:
+* To use Jupyter Notebooks with RAW, go to [http://localhost:8888](http://localhost:8888). 
+* To access the RAW Web Adminstration UI, go to [http://localhost:9000](http://localhost:9000) (or `http://${PUBLIC_ADDRESS}` if you configured the proxy).
 
 #### macOS
 
