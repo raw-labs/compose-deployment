@@ -42,6 +42,7 @@ By default we expose the following RAW services:
  * raw-creds: `54322`
  * raw-storage: `54323`
  * raw-frontend: `9000`
+ * raw-jupyter: `8888`
 
 Please keep in mind these ports will be accessible from the machine as well as any computer which can connect to your computer, and unless you setup some authentication, **without any credentials**.
 
@@ -62,18 +63,19 @@ and add this to your `settings.local.sh`:
 : ${PUBLIC_ADDRESS:="public address of the server"}
 ```
 
-This will start all the services required, but only expose the following ports:
+This will start: raw-executor, raw-creds, raw-storage and raw-frontend but only expose the following ports:
 
  * proxy on `80`
  * proxy on `443`
 
-with an automatique redirection to HTTPS on port `443`. The endpoints will be setup as follows:
+with an automatic redirection to HTTPS on port `443`. The endpoints will be setup as follows:
 
  * raw-executor: `https://${PUBLIC_ADDRESS}:443/api/executor`
  * raw-creds: `https://${PUBLIC_ADDRESS}:443/api/creds`
  * raw-storage: `https://${PUBLIC_ADDRESS}:443/api/storage`
  * raw-frontend: `https://${PUBLIC_ADDRESS}:443/` 
 
+**Atention:** raw-jupyter is not started with the proxy deployment.
 
 ### [Optional] Auth0 user authentication
 
@@ -107,7 +109,7 @@ For example:
 
 For more information, please check the **docker-compose** documentation.
 
-To access the frontend, open a browser and go to [http://localhost:9000](http://localhost:9000) or `http://${PUBLIC_ADDRESS}` if you configured the proxy.
+To use jupyter notebooks open a browser and go to [http://localhost:8888](http://localhost:8888). To access the frontend go to [http://localhost:9000](http://localhost:9000) or `http://${PUBLIC_ADDRESS}` if you configured the proxy.
 
 #### macOS
 On macOS, when launching RAW for the first time you may be prompted to grant permissions to RAW to access your home directory. 
