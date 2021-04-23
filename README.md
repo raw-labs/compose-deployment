@@ -2,23 +2,24 @@
 
 This repository contains the scripts and configuration to run RAW using Docker Compose.
 
-## Pre-requisites
+## System Requirements
 
 - docker
 - docker-compose
+- openssl
 
 The installation has been tested on Linux (Ubuntu).
 
-## Setting up
+## Pre-requisites
 
 First download or clone this repository.
 
 Then [contact us](https://www.raw-labs.com/contact-us/) to obtain the following:
 - A license file
-- A version number of RAW
-- The credentials for the RAW Docker registry
+- A version number
+- The username and password for the RAW Docker Registry
 
-The license file should be copied to the following location: `conf/raw.license`, or `RAW_LICENSE` pointed to the file (see [below](#Settings) how to change settings).
+The license file must be stored in file `conf/raw.license`. Alternatively, define the environment variable `RAW_LICENSE` pointing to the file.
 
 Create a file named `settings.local.sh`, with the following:
 
@@ -26,27 +27,24 @@ Create a file named `settings.local.sh`, with the following:
 : ${RAW_VERSION:="The version number you received from us"}
 ```
 
-Then Login to the docker registry with the following command `docker login artifactory.raw-labs.com/compose` and type the username and password that you received from us.
+Then login to the docker registry with the following command:
+```sh
+docker login artifactory.raw-labs.com/compose
+```
+Type the username and password that you received from us.
 
-
-The Credentials service requires a secret AES symmetric key in order to encrypt the credentials stored in the underlying database.
-This will be generated automatically the first time you run RAW, but requires OpenSSL to be installed.
-
-**Note:** The following sections will assume the default values are used for the settings, adapt as needed if you make modifications.
+Note: the Credentials service requires a secret AES symmetric key in order to encrypt the credentials stored in the underlying database. This will be generated automatically the first time you run RAW, but requires OpenSSL to be installed in your machine.
 
 ### Basic setup
 
-By default we expose the following RAW services:
+Please keep in mind that the default configuration opens a set of service ports which are accessible over the network: the default configuration does not include any form of security.
 
+By default, the following ports are exposed:
  * raw-executor: `54321`
  * raw-creds: `54322`
  * raw-storage: `54323`
  * raw-frontend: `9000`
-
-Please keep in mind these ports will be accessible from the machine as well as any computer which can connect to your computer, and unless you setup some authentication, **without any credentials**.
-
-If you add files in the `data` sub directory, these will be visible within RAW under `file:/data`
-
+ * raw-jupyter: `8888`
 
 ### [Optional] TLS Proxy
 
@@ -62,18 +60,19 @@ and add this to your `settings.local.sh`:
 : ${PUBLIC_ADDRESS:="public address of the server"}
 ```
 
-This will start all the services required, but only expose the following ports:
+This will start: raw-executor, raw-creds, raw-storage and raw-frontend but only expose the following ports:
 
  * proxy on `80`
  * proxy on `443`
 
-with an automatique redirection to HTTPS on port `443`. The endpoints will be setup as follows:
+with an automatic redirection to HTTPS on port `443`. The endpoints will be setup as follows:
 
  * raw-executor: `https://${PUBLIC_ADDRESS}:443/api/executor`
  * raw-creds: `https://${PUBLIC_ADDRESS}:443/api/creds`
  * raw-storage: `https://${PUBLIC_ADDRESS}:443/api/storage`
  * raw-frontend: `https://${PUBLIC_ADDRESS}:443/` 
 
+**Atention:** raw-jupyter is not started with the proxy deployment.
 
 ### [Optional] Auth0 user authentication
 
@@ -87,10 +86,11 @@ And copy `conf/auth-auth0.conf` to `conf/auth-auth0-your-config.conf` and fill i
 
 **Note:** This has only been tested with the TLS proxy configuration enabled.
 
-
 ## Running
 
 In order to manage the RAW services, use `run.sh <docker-compose commands>`.
+
+If you add files in the `data` sub directory, these will be visible within RAW under `file:/data`
 
 For example:
 
@@ -107,9 +107,12 @@ For example:
 
 For more information, please check the **docker-compose** documentation.
 
-To access the frontend, open a browser and go to [http://localhost:9000](http://localhost:9000) or `http://${PUBLIC_ADDRESS}` if you configured the proxy.
+To use Jupyter go to [http://localhost:8888](http://localhost:8888). 
+
+To access the adminstration interface go to [http://localhost:9000](http://localhost:9000) (or `http://${PUBLIC_ADDRESS}` if you configured the proxy).
 
 #### macOS
+
 On macOS, when launching RAW for the first time you may be prompted to grant permissions to RAW to access your home directory. 
 This is expected as RAW requires write access to the directory where it is installed.
 
@@ -126,7 +129,6 @@ used by the system. These values are applied per user session:
 The logs are stored in the current working directory, under  `./logs`.
 This directory contains a subdirectory for each process, e.g., `./logs/executor`, `./logs/driver`, and so on.
 The logs from the previous run are deleted when launching RAW.
-
 
 ## Configuration
 
