@@ -106,7 +106,7 @@ services:
 
   jupyter:
     image: ${DOCKER_REGISTRY}/raw-jupyter:${RAW_VERSION}
-    entrypoint: ["jupyter", "notebook", "--no-browser","--NotebookApp.token='${RAW_JUPYTER_TOKEN}'","--NotebookApp.password=''", "--NotebookApp.notebook_dir='/home/jovyan/notebooks'"]
+    entrypoint: ["jupyter", "notebook", "--no-browser","--NotebookApp.token=''","--NotebookApp.password=''", "--NotebookApp.notebook_dir='/home/jovyan/notebooks'"]
     ports:
       - "${RAW_JUPYTER_PORT}:8888"
     depends_on:
