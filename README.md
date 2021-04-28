@@ -4,11 +4,23 @@ This repository contains the scripts and configuration to run RAW using Docker C
 
 ## System Requirements
 
-- docker
-- docker-compose
-- openssl
+- Docker
+- Docker Compose
+- OpenSSL
+- Python 3
 
-The installation has been tested on Linux (Ubuntu).
+The installation has been tested on Ubuntu 20.04 and CentOS 8 (with Docker CE instead of CentOS/RHEL podman).
+
+### Known Issues
+
+#### CentOS/RHEL
+
+On CentOS/RHEL, make sure you are using Docker CE, not podman, as there are incompatibility issues between podman and Docker Compose.
+
+#### macOS
+
+On macOS, when launching RAW for the first time you may be prompted to grant permissions to RAW to access your home directory. 
+This is expected as RAW requires write access to the directory where it is installed.
 
 ## Pre-requisites
 
@@ -16,16 +28,9 @@ First download or clone this repository.
 
 Then [contact us](https://www.raw-labs.com/contact-us/) to obtain the following:
 - A license file
-- A version number
 - The username and password for the RAW Docker Registry
 
 The license file must be stored in file `conf/raw.license`. Alternatively, define the environment variable `RAW_LICENSE` pointing to the file.
-
-Create a file named `settings.local.sh`, with the following:
-
-```sh
-: ${RAW_VERSION:="The version number you received from us"}
-```
 
 Then login to the docker registry with the following command:
 ```sh
@@ -105,12 +110,9 @@ For more information, please check the **docker-compose** documentation.
 
 Once RAW services have started:
 * To use Jupyter Notebooks with RAW, go to [http://localhost:8888](http://localhost:8888). 
-* To access the RAW Web Adminstration UI, go to [http://localhost:9000](http://localhost:9000) (or `http://${PUBLIC_ADDRESS}` if you configured the proxy).
+* To access the RAW Web Administration UI, go to [http://localhost:9000](http://localhost:9000) (or `http://${PUBLIC_ADDRESS}` if you configured the proxy).
 
-#### macOS
-
-On macOS, when launching RAW for the first time you may be prompted to grant permissions to RAW to access your home directory. 
-This is expected as RAW requires write access to the directory where it is installed.
+A video tutorial on the RAW Web Administration UI is available [here](https://www.youtube.com/playlist?list=PLS9s46JylP7G39cAk8kDEwFOJcT6q29qD).
 
 ### Configuration
 
@@ -147,7 +149,7 @@ Settings are taken in the following order of precedence:
 
 The configuration is in the `conf/` subdirectory, organized by RAW service (frontend, credentials service, executor service, storage service).
 
-The configuration of the driver, responsible for running a user session, is a special case, because the driver is launched at runtime by the RAW Executor.
+The configuration of the driver, responsible for running a user session, is handled differently because the driver is launched at runtime by RAW.
 The JVM options used to launch the driver are set in `conf/raw-executor/driver-java-options`. In principle, there is no need to change these options.
 
 ## Report an Issue
