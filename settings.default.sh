@@ -29,7 +29,7 @@
 : ${PROXY_CERTS_KEY:="./conf/certs/proxy.key"}
 : ${AUTH_CONF:="./conf/auth-none.conf"}
 
-: ${RAW_VERSION:=""}
+: ${RAW_VERSION:="1.14.25"}
 : ${PUBLIC_ADDRESS:="localhost"}
 
 # Heap size of the driver, e.g., -Xmx${RAW_DRIVER_MEM} as an argument to the driver's JVM
