@@ -4,10 +4,10 @@ This repository contains the scripts and configuration to run RAW using Docker C
 
 ## System Requirements
 
-- docker
-- docker-compose
-- openssl
-- python
+- Docker
+- Docker Compose
+- OpenSSL
+- Python 3
 
 The installation has been tested on Ubuntu 20.04 and CentOS 8 (with Docker CE instead of CentOS/RHEL podman).
 
@@ -112,7 +112,7 @@ Once RAW services have started:
 * To use Jupyter Notebooks with RAW, go to [http://localhost:8888](http://localhost:8888). 
 * To access the RAW Web Administration UI, go to [http://localhost:9000](http://localhost:9000) (or `http://${PUBLIC_ADDRESS}` if you configured the proxy).
 
-A video tutorial on the RAW Web Administration UI is available [https://www.youtube.com/playlist?list=PLS9s46JylP7G39cAk8kDEwFOJcT6q29qD](here).
+A video tutorial on the RAW Web Administration UI is available [here](https://www.youtube.com/playlist?list=PLS9s46JylP7G39cAk8kDEwFOJcT6q29qD).
 
 ### Configuration
 
