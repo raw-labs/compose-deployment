@@ -149,7 +149,7 @@ Settings are taken in the following order of precedence:
 
 The configuration is in the `conf/` subdirectory, organized by RAW service (frontend, credentials service, executor service, storage service).
 
-The configuration of the driver, responsible for running a user session, is a special case, because the driver is launched at runtime by the RAW Executor.
+The configuration of the driver, responsible for running a user session, is handled differently because the driver is launched at runtime by RAW.
 The JVM options used to launch the driver are set in `conf/raw-executor/driver-java-options`. In principle, there is no need to change these options.
 
 ## Report an Issue
