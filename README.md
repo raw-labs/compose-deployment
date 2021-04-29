@@ -122,7 +122,7 @@ Once RAW services have started:
 
 ### Configuring memory, cores and cache limits
 
-The following environment variables can be set to control the memory and number of cores used by RAW. These values are applied per user session:
+The following environment variables can be set to control commonly-used RAW settings. These values are applied per user session:
 - `RAW_DRIVER_MEM` - Maximum heap size. Default value is `8g`.
 - `RAW_DRIVER_CORES` - Number of cores used. Default value is the number of cores available.
 - `RAW_CACHE_GC_THRESHOLD` - The size of the cache that when reached will trigger a garbage collection. Default value is `10GB`.
