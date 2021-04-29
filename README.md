@@ -112,7 +112,7 @@ In order to manage the RAW services, use `run.sh <docker-compose commands>`. For
  * To restart the services after a stop: `./run.sh start`
  * To stop and delete the containers: 
    * `./run.sh down`, or 
-   * `./run.sh down --volumes` to remove all the docker volumes as well.
+   * `./run.sh down --volumes` to remove all the docker volumes as well. This will delete metadata databases, caches, etc.
 
 For more information, please check the **docker-compose** documentation.
 
