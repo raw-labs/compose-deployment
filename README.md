@@ -32,6 +32,8 @@ docker login artifactory.raw-labs.com/compose
 6. Point your browser to [http://localhost:8888/notebooks/Introduction.ipynb](http://localhost:8888/notebooks/Introduction.ipynb) to follow our tutorial using Jupyter Notebooks.
 7. (Optional) To access the RAW Web Administration UI, go to [http://localhost:9000](http://localhost:9000). A video tutorial on the RAW Web Administration UI is available [here](https://www.youtube.com/playlist?list=PLS9s46JylP7G39cAk8kDEwFOJcT6q29qD).
 
+*Note:* The system completes its startup during the execution of the first query, as user session is created, cores and memory allocated, code caches built, along with other tasks. Therefore, it is expected that the first query will take longer than expected to execute. The performance will stabilize after a few queries.
+
 ## Report an Issue
 
 Use [support@raw-labs.atlassian.net](mailto:support@raw-labs.atlassian.net) to report an issue or give us feedback.
