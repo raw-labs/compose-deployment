@@ -25,19 +25,7 @@ Create a file named `settings.local.sh`, with the following:
 : ${RAW_VERSION:="The version number you received from us"}
 ```
 
-Then Login to the docker registry with the following command `docker login artifactory.raw-labs.com/compose` and type the username and password that you received from us.
-
-
-The Credentials service requires a secret AES symmetric key in order to encrypt the credentials stored in the underlying database.
-To generate the key, run:
-
-```
-$ openssl rand -base64 32
-```
-And assign the resulting key to the environment variable `RAW_CREDS_JDBC_ENCRYPTION_KEY` (this can be written in the `settings.local.sh` file, 
-as described above.
-
-
+Finally, login to the docker registry with the following command `docker login artifactory.raw-labs.com/compose` and type the username and password that you received from us.
 
 **Note:** The following sections will assume the default values are used for the settings, adapt as needed if you make modifications.
 

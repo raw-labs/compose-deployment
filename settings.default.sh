@@ -19,6 +19,7 @@
 : ${RAW_CREDS_PORT:="54322"}
 : ${RAW_STORAGE_PORT:="54323"}
 : ${RAW_FRONTEND_PORT:="9000"}
+: ${RAW_JUPYTER_PORT:="8888"}
 
 : ${PROXY_HTTP_PORT:="80"}
 : ${PROXY_HTTPS_PORT:="443"}
@@ -28,7 +29,7 @@
 : ${PROXY_CERTS_KEY:="$(pwd)/conf/certs/proxy.key"}
 : ${AUTH_CONF:="$(pwd)/conf/auth-none.conf"}
 
-: ${RAW_VERSION:=""}
+: ${RAW_VERSION:="1.14.28"}
 : ${PUBLIC_ADDRESS:="localhost"}
 
 # Heap size of the driver, e.g., -Xmx${RAW_DRIVER_MEM} as an argument to the driver's JVM

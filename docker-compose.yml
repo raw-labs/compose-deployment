@@ -105,6 +105,19 @@ services:
       RAW_STORAGE_PORT: ${RAW_STORAGE_PORT}
       PROXY_HTTPS_PORT: ${PROXY_HTTPS_PORT}
 
+  jupyter:
+    image: ${DOCKER_REGISTRY}/raw-jupyter:${RAW_VERSION}
+    entrypoint: ["jupyter", "notebook", "--no-browser","--NotebookApp.token=''","--NotebookApp.password=''", "--NotebookApp.notebook_dir='/home/jovyan/notebooks'"]
+    ports:
+      - "${RAW_JUPYTER_PORT}:8888"
+    depends_on:
+      - storage
+      - creds
+      - executor
+    volumes:
+      - ./conf/raw-jupyter/raw.ini:/home/jovyan/.raw.ini:ro
+      - ./conf/raw-jupyter/notebooks:/home/jovyan/notebooks:rw
+
 volumes:
   postgres:
   data:
