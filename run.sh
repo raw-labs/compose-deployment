@@ -22,6 +22,12 @@ then
 	exit 1
 fi
 
+if [ ! -f "${RAW_LICENSE}" ]
+then
+	echo "No ficense found at: ${RAW_LICENSE}. Please make sure that RAW_LICENSE is pointing to a valid license file. Exiting..."
+	exit 1
+fi
+
 # We can't commit empty folders in git, nor set access permissions on them,
 # and the folder has to exist for the bind mount to work, so we create them
 # here.

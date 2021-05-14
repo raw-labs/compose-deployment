@@ -1,3 +1,4 @@
+version: "3.6"
 services:
   postgres:
     image: postgres:12
@@ -120,36 +121,43 @@ services:
 volumes:
   postgres:
   data:
+    driver: local
     driver_opts:
       type: "none"
       o: "bind"
       device: "${RAW_DATA_SOURCE}"
   cache:
+    driver: local
     driver_opts:
       type: "none"
       o: "bind"
       device: "${RAW_CACHE}"
   logs_frontend:
+    driver: local
     driver_opts:
       type: "none"
       o: "bind"
       device: "${RAW_LOGS}/frontend"
   logs_creds:
+    driver: local
     driver_opts:
       type: "none"
       o: "bind"
       device: "${RAW_LOGS}/creds"
   logs_storage:
+    driver: local
     driver_opts:
       type: "none"
       o: "bind"
       device: "${RAW_LOGS}/storage"
   logs_executor:
+    driver: local
     driver_opts:
       type: "none"
       o: "bind"
       device: "${RAW_LOGS}/executor"
   logs_driver:
+    driver: local
     driver_opts:
       type: "none"
       o: "bind"

@@ -6,12 +6,12 @@
 # etc... If this is not set, the current folder name is used by default.
 : ${COMPOSE_PROJECT_NAME:="raw"}
 
-: ${RAW_LICENSE:="./conf/raw.license"}
-: ${RAW_LOGS:="./logs"}
-: ${RAW_CACHE:="./raw-cache"}
+: ${RAW_LICENSE:="$(pwd)/conf/raw.license"}
+: ${RAW_LOGS:="$(pwd)/logs"}
+: ${RAW_CACHE:="$(pwd)/raw-cache"}
 
 # Folder containing local data files.
-: ${RAW_DATA_SOURCE:="./data"}
+: ${RAW_DATA_SOURCE:="$(pwd)/data"}
 # Where to mount the local data folder within the container.
 : ${RAW_DATA_TARGET:="/data"}
 
@@ -25,9 +25,9 @@
 : ${PROXY_HTTPS_PORT:="443"}
 : ${COMPOSE_FILE:="docker-compose.yml"}
 
-: ${PROXY_CERTS_CRT:="./conf/certs/proxy.crt"}
-: ${PROXY_CERTS_KEY:="./conf/certs/proxy.key"}
-: ${AUTH_CONF:="./conf/auth-none.conf"}
+: ${PROXY_CERTS_CRT:="$(pwd)/conf/certs/proxy.crt"}
+: ${PROXY_CERTS_KEY:="$(pwd)/conf/certs/proxy.key"}
+: ${AUTH_CONF:="$(pwd)/conf/auth-none.conf"}
 
 : ${RAW_VERSION:="1.14.28"}
 : ${PUBLIC_ADDRESS:="localhost"}
