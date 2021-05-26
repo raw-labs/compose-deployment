@@ -66,7 +66,7 @@ then
     then
         RAW_DRIVER_CORES=2
     else
-        RAW_DRIVER_CORES=$(( $SYSTEM_CORES-2 ))
+        RAW_DRIVER_CORES=$(( SYSTEM_CORES-2 ))
     fi
     export RAW_DRIVER_CORES
     printf  "\n: \${RAW_DRIVER_CORES:=\"%s\"}" "$RAW_DRIVER_CORES">> settings.local.sh
@@ -77,12 +77,12 @@ fi
 if [ -z "${RAW_DRIVER_MEM}" ]
 then
     SYSTEM_MEMORY_KB=$(grep MemTotal /proc/meminfo | awk '{print $2}')
-    SYSTEM_MEMORY_GB=$(( $SYSTEM_MEMORY_KB / 1024 / 1024 ))
+    SYSTEM_MEMORY_GB=$(( SYSTEM_MEMORY_KB / 1024 / 1024 ))
     if [ "$SYSTEM_MEMORY_GB" -le 4 ]
     then
         RAW_DRIVER_MEM=1
     else
-        RAW_DRIVER_MEM=$(( $SYSTEM_MEMORY_GB / 2 ))
+        RAW_DRIVER_MEM=$(( SYSTEM_MEMORY_GB / 2 ))
     fi
     if [ "$RAW_DRIVER_MEM" -ge 31 ]
     then
@@ -96,12 +96,12 @@ fi
 if [ -z "${RAW_CACHE_GC_THRESHOLD}" ]
 then
     FREE_DISK_KB=$(df -Pk ${RAW_CACHE:-$SCRIPT_DIR} | tail -n 1 | awk '{print $4}')
-    FREE_DISK_GB=$(( $FREE_DISK_KB / 1024 / 1024 ))
+    FREE_DISK_GB=$(( FREE_DISK_KB / 1024 / 1024 ))
     if [ "$FREE_DISK_GB" -le 4 ]
     then
         RAW_CACHE_GC_THRESHOLD=1
     else
-        RAW_CACHE_GC_THRESHOLD=$(( $FREE_DISK_GB / 2 ))
+        RAW_CACHE_GC_THRESHOLD=$(( FREE_DISK_GB / 2 ))
     fi
     if [ "$RAW_CACHE_GC_THRESHOLD" -ge 30 ]
     then
