@@ -108,6 +108,7 @@ then
     then
         RAW_CACHE_GC_THRESHOLD=30
     fi
+    RAW_CACHE_GC_THRESHOLD="$RAW_CACHE_GC_THRESHOLD"GB
     export RAW_CACHE_GC_THRESHOLD
     printf  "\n: \${RAW_CACHE_GC_THRESHOLD:=\"%s\"}" "$RAW_CACHE_GC_THRESHOLD">> settings.local.sh
 fi
