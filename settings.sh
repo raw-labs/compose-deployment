@@ -88,6 +88,7 @@ then
     then
         RAW_DRIVER_MEM=31
     fi
+    RAW_DRIVER_MEM="$RAW_DRIVER_MEM"g
     export RAW_DRIVER_MEM
     printf  "\n: \${RAW_DRIVER_MEM:=\"%s\"}" "$RAW_DRIVER_MEM">> settings.local.sh
 fi
@@ -107,6 +108,7 @@ then
     then
         RAW_CACHE_GC_THRESHOLD=30
     fi
+    RAW_CACHE_GC_THRESHOLD="$RAW_CACHE_GC_THRESHOLD"GB
     export RAW_CACHE_GC_THRESHOLD
     printf  "\n: \${RAW_CACHE_GC_THRESHOLD:=\"%s\"}" "$RAW_CACHE_GC_THRESHOLD">> settings.local.sh
 fi
