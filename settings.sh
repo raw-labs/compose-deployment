@@ -88,6 +88,7 @@ then
     then
         RAW_DRIVER_MEM=31
     fi
+    RAW_DRIVER_MEM="$RAW_DRIVER_MEM"g
     export RAW_DRIVER_MEM
     printf  "\n: \${RAW_DRIVER_MEM:=\"%s\"}" "$RAW_DRIVER_MEM">> settings.local.sh
 fi
